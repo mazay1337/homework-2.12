@@ -1,25 +1,54 @@
 package proskycalculator.service;
 
+import proskycalculator.exception.NullParameterException;
 import proskycalculator.exception.ZeroDivideException;
 
-public class CalculatorServiceImpl implements CalculatorService{
-    @Override
-    public int sum(int num1, int num2) {
-        return num1 + num2;
+public class CalculatorServiceImpl implements CalculatorService {
+    public String welcome() {
+        return "Добро пожаловать в калькулятор";
     }
-    @Override
-    public int subtract(int num1, int num2) {
-        return num1 - num2;
+
+    public boolean isNullConfirmed(Integer num1, Integer num2) {
+        return num1 != null || num2 != null;
     }
+
+
     @Override
-    public int multiply(int num1, int num2) {
-        return num1 * num2;
-    }
-    @Override
-    public int divide(int num1, int num2) {
-        if (num2 == 0) {
-            throw new ZeroDivideException();
+    public Integer sum(Integer num1, Integer num2) {
+        if (isNullConfirmed(num1, num2)) {
+            return num1 + num2;
+        } else {
+            throw new NullParameterException();
         }
-        return num1 / num2;
+    }
+
+    @Override
+    public Integer subtract(Integer num1, Integer num2) {
+        if (isNullConfirmed(num1, num2)) {
+            return num1 - num2;
+        } else {
+            throw new NullParameterException();
+        }
+    }
+
+    @Override
+    public Integer multiply(Integer num1, Integer num2) {
+        if (isNullConfirmed(num1, num2)) {
+            return num1 * num2;
+        } else {
+            throw new NullParameterException();
+        }
+    }
+
+    @Override
+    public Integer divide(Integer num1, Integer num2) {
+        if (isNullConfirmed(num1, num2)) {
+            if (num2 == 0) {
+                throw new ZeroDivideException();
+            }
+            return num1 / num2;
+        } else {
+            throw new NullParameterException();
+        }
     }
 }

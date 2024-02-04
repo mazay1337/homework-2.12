@@ -4,11 +4,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface CalculatorService {
-    int sum(int num1, int num2);
+    public String welcome();
+    Integer sum(Integer num1, Integer num2);
 
-    int subtract(int num1, int num2);
+    Integer subtract(Integer num1, Integer num2);
 
-    int multiply(int num1, int num2);
+    Integer multiply(Integer num1, Integer num2);
 
-    int divide(int num1, int num2);
+    Integer divide(Integer num1, Integer num2);
 }
